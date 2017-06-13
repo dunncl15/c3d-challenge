@@ -1,14 +1,50 @@
 import React, { Component } from 'react';
 
-
 class Form extends Component {
+  constructor() {
+    super();
+    this.state = {
+      error: ''
+    }
+  }
 
   submitForm(e, data) {
     e.preventDefault();
-    this.props.saveNewLocation(data);
+    this.validateInputs(data);
+  }
+
+  validateInputs(data) {
+    const lat = parseFloat(data.lat);
+    const lng = parseFloat(data.lng);
+    if (data.name && this.checklat(lat) && this.checklng(lng)) {
+      this.props.saveNewLocation(data);
+      this.clearInputs();
+    } else {
+      this.setState({ error: 'Please enter a valid name and lat/lng coordinates' })
+      this.clearInputs();
+    }
+  }
+
+  checklat(lat) {
+    if (lat.length >= 7 && -90 <= lat && lat <= 90) {
+      return true;
+    }
+  }
+
+  checklng(lng) {
+    if (lng.length >= 7 && -180 <= lng && lng <= 180) {
+      return true;
+    }
+  }
+
+  clearInputs() {
+    this.name.value = '';
+    this.lat.value = '';
+    this.lng.value = '';
   }
 
   render() {
+    const { error } = this.state;
     return (
       <form className="form">
         <label>
@@ -29,7 +65,8 @@ class Form extends Component {
           Lon
           <input
             ref={(input) => { this.lng = input }}
-            type="text"/>
+            type="text"
+          />
         </label>
         <button
           type="submit"
@@ -41,6 +78,7 @@ class Form extends Component {
         >
             Save
         </button>
+        { error && <p>{ error }</p>}
       </form>
     );
   }
