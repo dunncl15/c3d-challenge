@@ -9,6 +9,7 @@ class LeafletMap extends Component {
 
     };
   }
+
   render() {
     return (
       <div className="map-container">
