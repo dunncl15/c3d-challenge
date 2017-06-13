@@ -6,17 +6,18 @@ class LeafletMap extends Component {
   constructor(props) {
     super(props)
     this.state = {
-
+      center: [39.750809, -104.996810],
     };
   }
 
   render() {
+    const { center } = this.state;
     return (
       <div className="map-container">
         <Map
           className="map"
           zoomControl={false}
-          center={[39.750809, -104.996810]}
+          center={ center }
           zoom={4}
           maxBounds={[[85, 100], [-85, -280]]}
         >
