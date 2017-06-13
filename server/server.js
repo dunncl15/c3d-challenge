@@ -35,6 +35,20 @@ app.post('/locations', (request, response) => {
   .catch(error => console.error('error: ', error));
 });
 
+app.delete('/locations/:id', (request, response) => {
+  const { id } = request.params
+
+  database('locations').where('id', id).del()
+  .then(location => {
+    if (!location) {
+      response.status(404).send({ error: 'Location not found' })
+    } else {
+      response.sendStatus(204)
+    }
+  })
+  .catch(error => response.status(500).send({ error: error }))
+})
+
 const portNumber = process.env.PORT || 3001;
 
 app.listen(portNumber, () => {
