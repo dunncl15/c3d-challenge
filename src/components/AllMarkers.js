@@ -4,6 +4,7 @@ import { connect } from 'react-redux';
 import MapMarker from './Marker'
 
 class AllMarkers extends Component {
+
   render() {
     const markerArray = this.props.locations.map((marker, i) => {
       return (
@@ -17,7 +18,7 @@ class AllMarkers extends Component {
 
     return (
       <div className="paths-container">
-        {markerArray}
+      { markerArray }
       </div>
     );
   }

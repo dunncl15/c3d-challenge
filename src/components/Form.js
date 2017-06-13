@@ -2,10 +2,12 @@ import React, { Component } from 'react';
 
 
 class Form extends Component {
+
   submitForm(e, data) {
     e.preventDefault();
-    this.props.saveLocation(data);
+    this.props.saveNewLocation(data);
   }
+
   render() {
     return (
       <form className="form">
