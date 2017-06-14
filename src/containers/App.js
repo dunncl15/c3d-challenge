@@ -5,7 +5,10 @@ import { fetchAllLocations } from '../actions/locationActions';
 import App from '../components/App';
 
 const mapStateToProps = (state) => {
-  return { locations: state.Locations.data };
+  return {
+    locations: state.Locations.data,
+    coordinates: state.selectedCoordinates
+  };
 };
 
 const mapDispatchToProps = (dispatch) => {
