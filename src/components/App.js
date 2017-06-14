@@ -1,3 +1,4 @@
+/* eslint-disable jsx-filename-extension */
 import React, { Component } from 'react';
 import PropTypes from 'prop-types';
 import LeafletMap from '../components/LeafletMap';
@@ -14,12 +15,11 @@ class App extends Component {
   }
 
   render() {
-    const { locations, coordinates, currentCoords } = this.props;
+    const { coordinates, currentCoords } = this.props;
     return (
       <div className="App">
         <FormContainer />
         <LeafletMap
-          locations={locations}
           coordinates={coordinates}
           currentCoords={currentCoords}
         />
