@@ -1,10 +1,13 @@
+/* eslint-disable react/jsx-boolean-value, react/jsx-filename-extension */
+
 import React, { Component } from 'react';
+import PropTypes from 'prop-types';
 import { Map, TileLayer, ZoomControl, Polygon } from 'react-leaflet';
 import AllMarkers from '../containers/AllMarkers';
 
 class LeafletMap extends Component {
   constructor(props) {
-    super(props)
+    super(props);
     this.state = {
       center: [39.750809, -104.996810],
       zoom: 4,
@@ -17,12 +20,12 @@ class LeafletMap extends Component {
     return (
       <div className="map-container">
         <Map
-          animate={ true }
-          useFlyTo={ true }
+          animate={true}
+          useFlyTo={true}
           className="map"
           zoomControl={false}
-          center={ currentCoords.length ? currentCoords : center }
-          zoom={ currentCoords.length ? 5 : zoom }
+          center={currentCoords.length ? currentCoords : center}
+          zoom={currentCoords.length ? 5 : zoom}
           maxBounds={[[180, -180], [-180, 180]]}
         >
           <TileLayer
@@ -43,5 +46,10 @@ class LeafletMap extends Component {
     );
   }
 }
+
+LeafletMap.propTypes = {
+  coordinates: PropTypes.arrayOf(PropTypes.array).isRequired,
+  currentCoords: PropTypes.arrayOf(PropTypes.number).isRequired,
+};
 
 export default LeafletMap;

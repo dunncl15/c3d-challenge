@@ -1,5 +1,6 @@
+/* eslint-disable arrow-body-style */
 
-exports.up = function(knex, Promise) {
+exports.up = function (knex, Promise) {
   return Promise.all([
     knex.schema.createTable('locations', (table) => {
       table.increments('id').primary();
@@ -7,12 +8,12 @@ exports.up = function(knex, Promise) {
       table.float('lat', 14, 10);
       table.float('lng', 14, 10);
       table.timestamps(true, true);
-    })
-  ])
+    }),
+  ]);
 };
 
-exports.down = function(knex, Promise) {
+exports.down = function (knex, Promise) {
   return Promise.all([
-    knex.schema.dropTable('locations')
-  ])
+    knex.schema.dropTable('locations'),
+  ]);
 };

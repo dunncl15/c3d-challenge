@@ -1,29 +1,30 @@
-/*eslint-disable no-unused-vars*/
-import React, { Component } from 'react';
-import { connect } from 'react-redux';
-import MapMarker from './Marker'
+/* eslint-disable no-unused-vars, arrow-body-style, react/jsx-filename-extension */
+import React from 'react';
+import PropTypes from 'prop-types';
+import MapMarker from './Marker';
 
-class AllMarkers extends Component {
-
-  render() {
-    const { locations, storeCoordinates } = this.props;
-    const markerArray = locations.map((marker, i) => {
-      return (
-        <MapMarker
-          key={i}
-          location={[+marker.lat, +marker.lng]}
-          name={marker.name}
-          storeCoordinates={ storeCoordinates }
-        />
-      )
-    })
-
+const AllMarkers = ({ locations, storeCoordinates }) => {
+  const markerArray = locations.map((marker, i) => {
     return (
-      <div className="paths-container">
-      { markerArray }
-      </div>
+      <MapMarker
+        key={i}
+        location={[+marker.lat, +marker.lng]}
+        name={marker.name}
+        storeCoordinates={storeCoordinates}
+      />
     );
-  }
-}
+  });
+
+  return (
+    <div className="paths-container">
+      { markerArray }
+    </div>
+  );
+};
+
+AllMarkers.propTypes = {
+  locations: PropTypes.arrayOf(PropTypes.object).isRequired,
+  storeCoordinates: PropTypes.func.isRequired,
+};
 
 export default AllMarkers;

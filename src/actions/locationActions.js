@@ -1,3 +1,5 @@
+/* eslint-disable arrow-body-style */
+
 require('isomorphic-fetch');
 
 const storeAllLocations = (locations) => {
@@ -18,21 +20,6 @@ const currentCoordinates = (coordinates) => {
   return {
     type: 'SET_CURRENT_COORDS',
     data: coordinates,
-  }
-}
-
-const saveNewLocation = (location) => {
-  return (dispatch) => {
-    return fetch('/locations', {
-      method: 'POST',
-      headers: {
-        'Content-Type': 'application/json',
-        Accept: 'application/json'
-      },
-      body: JSON.stringify(location)
-    })
-      .then(response => response.json())
-      .then(() => dispatch(fetchAllLocations()));
   };
 };
 
@@ -49,5 +36,19 @@ const fetchAllLocations = () => {
   };
 };
 
+const saveNewLocation = (location) => {
+  return (dispatch) => {
+    return fetch('/locations', {
+      method: 'POST',
+      headers: {
+        'Content-Type': 'application/json',
+        Accept: 'application/json',
+      },
+      body: JSON.stringify(location),
+    })
+      .then(response => response.json())
+      .then(() => dispatch(fetchAllLocations()));
+  };
+};
 
-export { fetchAllLocations, saveNewLocation, storeCoordinates, currentCoordinates }
+export { fetchAllLocations, saveNewLocation, storeCoordinates, currentCoordinates };

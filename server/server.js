@@ -20,34 +20,32 @@ app.get('/', (req, res) => {
 app.get('/locations', (request, response) => {
   database('locations').select()
   .then(locations => response.status(200).json(locations))
-  .catch(error => console.error('error: ', error))
+  .catch(error => response.status(500).send({ error }));
 });
 
 app.post('/locations', (request, response) => {
-
   if (!request.body) {
     return response.status(422).send({ error: 'No location provided' });
   }
-
   const location = request.body;
   database('locations').insert(location, 'id')
-  .then(location => response.status(201).json({ id: location[0] }))
-  .catch(error => console.error('error: ', error));
+  .then(locations => response.status(201).json({ id: locations[0] }))
+  .catch(error => response.status(500).send({ error }));
 });
 
 app.delete('/locations/:id', (request, response) => {
-  const { id } = request.params
+  const { id } = request.params;
 
   database('locations').where('id', id).del()
-  .then(location => {
+  .then((location) => {
     if (!location) {
-      response.status(404).send({ error: 'Location not found' })
+      response.status(404).send({ error: 'Location not found' });
     } else {
-      response.sendStatus(204)
+      response.sendStatus(204);
     }
   })
-  .catch(error => response.status(500).send({ error: error }))
-})
+  .catch(error => response.status(500).send({ error }));
+});
 
 const portNumber = process.env.PORT || 3001;
 

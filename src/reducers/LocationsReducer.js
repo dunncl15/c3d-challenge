@@ -1,8 +1,10 @@
+/* eslint-disable no-case-declarations */
+
 const initialState = {
   data: [],
 };
 
-export const Locations = (state = initialState, action) => {
+const Locations = (state = initialState, action) => {
   switch (action.type) {
     case 'STORE_LOCATIONS':
       state = initialState;
@@ -11,3 +13,5 @@ export const Locations = (state = initialState, action) => {
       return state;
   }
 };
+
+export default Locations;
