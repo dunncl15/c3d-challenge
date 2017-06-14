@@ -10,13 +10,20 @@ const storeAllLocations = (locations) => {
 const storeCoordinates = (coordinates) => {
   return {
     type: 'STORE_COORDINATES',
-    data: coordinates
+    data: coordinates,
+  };
+};
+
+const currentCoordinates = (coordinates) => {
+  return {
+    type: 'SET_CURRENT_COORDS',
+    data: coordinates,
   }
 }
 
 const saveNewLocation = (location) => {
   return (dispatch) => {
-    fetch('/locations', {
+    return fetch('/locations', {
       method: 'POST',
       headers: {
         'Content-Type': 'application/json',
@@ -26,8 +33,8 @@ const saveNewLocation = (location) => {
     })
       .then(response => response.json())
       .then(() => dispatch(fetchAllLocations()));
-  }
-}
+  };
+};
 
 const fetchAllLocations = () => {
   return (dispatch) => {
@@ -43,4 +50,4 @@ const fetchAllLocations = () => {
 };
 
 
-export { fetchAllLocations, saveNewLocation, storeCoordinates }
+export { fetchAllLocations, saveNewLocation, storeCoordinates, currentCoordinates }
