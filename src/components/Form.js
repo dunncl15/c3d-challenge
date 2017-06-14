@@ -45,7 +45,7 @@ class Form extends Component {
     return (
       <form className="form">
         <label htmlFor="name">
-          Name
+          Name:
           <input
             ref={(input) => { this.name = input }}
             type="text"
@@ -53,7 +53,7 @@ class Form extends Component {
           />
         </label>
         <label htmlFor="lat">
-          Lat
+          Lat:
           <input
             ref={(input) => { this.lat = input }}
             type="text"
@@ -61,7 +61,7 @@ class Form extends Component {
           />
         </label>
         <label htmlFor="lng">
-          Lon
+          Long:
           <input
             ref={(input) => { this.lng = input }}
             type="text"
@@ -78,7 +78,7 @@ class Form extends Component {
         >
           Save
         </button>
-        { error && <p>{ error }</p>}
+        { error && <p className="error">{ error }</p>}
       </form>
     );
   }
