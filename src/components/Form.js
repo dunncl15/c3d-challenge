@@ -14,25 +14,23 @@ class Form extends Component {
   }
 
   validateInputs(data) {
-    const lat = parseFloat(data.lat);
-    const lng = parseFloat(data.lng);
+    const { lat, lng } = data;
     if (data.name && this.checklat(lat) && this.checklng(lng)) {
       this.props.saveNewLocation(data);
       this.clearInputs();
     } else {
-      this.setState({ error: 'Please enter a valid name and lat/lng coordinates' })
-      this.clearInputs();
+      this.setState({ error: 'Please enter a valid name and lat/lng coordinates.' });
     }
   }
 
   checklat(lat) {
-    if (lat.length >= 7 && -90 <= lat && lat <= 90) {
+    if (lat.length >= 7 && -90 <= parseFloat(lat) && parseFloat(lat) <= 90) {
       return true;
     }
   }
 
   checklng(lng) {
-    if (lng.length >= 7 && -180 <= lng && lng <= 180) {
+    if (lng.length >= 7 && -180 <= parseFloat(lng) && parseFloat(lng) <= 180) {
       return true;
     }
   }
