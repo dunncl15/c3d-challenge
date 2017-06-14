@@ -1,15 +1,11 @@
+/* eslint-disable arrow-body-style */
 import { connect } from 'react-redux';
 import { bindActionCreators } from 'redux';
 import Form from '../components/Form';
-import { saveNewLocation } from '../actions/locationActions';
-
-
-const mapStateToProps = (state) => {
-  return {};
-};
+import { saveNewLocation, currentCoordinates } from '../actions/locationActions';
 
 const mapDispatchToProps = (dispatch) => {
-  return bindActionCreators({ saveNewLocation }, dispatch);
+  return bindActionCreators({ saveNewLocation, currentCoordinates }, dispatch);
 };
 
-export default connect(mapStateToProps, mapDispatchToProps)(Form);
+export default connect(null, mapDispatchToProps)(Form);

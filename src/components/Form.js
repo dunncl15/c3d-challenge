@@ -1,11 +1,12 @@
 import React, { Component } from 'react';
+import PropTypes from 'prop-types';
 
 class Form extends Component {
   constructor() {
     super();
     this.state = {
-      error: ''
-    }
+      error: '',
+    };
   }
 
   submitForm(e, data) {
@@ -14,27 +15,23 @@ class Form extends Component {
   }
 
   validateInputs(data) {
-    const lat = parseFloat(data.lat);
-    const lng = parseFloat(data.lng);
+    const { lat, lng } = data;
+    const { saveNewLocation, currentCoordinates } = this.props;
     if (data.name && this.checklat(lat) && this.checklng(lng)) {
-      this.props.saveNewLocation(data);
+      saveNewLocation(data);
+      currentCoordinates([parseFloat(lat), parseFloat(lng)]);
       this.clearInputs();
     } else {
-      this.setState({ error: 'Please enter a valid name and lat/lng coordinates' })
-      this.clearInputs();
+      this.setState({ error: 'Please enter a valid name and lat/lng coordinates.' });
     }
   }
 
   checklat(lat) {
-    if (lat.length >= 7 && -90 <= lat && lat <= 90) {
-      return true;
-    }
+    return (lat.length >= 7 && parseFloat(lat) >= -90 && parseFloat(lat) <= 90);
   }
 
   checklng(lng) {
-    if (lng.length >= 7 && -180 <= lng && lng <= 180) {
-      return true;
-    }
+    return (lng.length >= 7 && parseFloat(lng) >= -180 && parseFloat(lng) <= 180);
   }
 
   clearInputs() {
@@ -47,36 +44,39 @@ class Form extends Component {
     const { error } = this.state;
     return (
       <form className="form">
-        <label>
+        <label htmlFor="name">
           Name
           <input
             ref={(input) => { this.name = input }}
             type="text"
+            name="name"
           />
         </label>
-        <label>
+        <label htmlFor="lat">
           Lat
           <input
             ref={(input) => { this.lat = input }}
             type="text"
+            name="lat"
           />
         </label>
-        <label>
+        <label htmlFor="lng">
           Lon
           <input
             ref={(input) => { this.lng = input }}
             type="text"
+            name="lng"
           />
         </label>
         <button
           type="submit"
-          onClick={(e) => this.submitForm(e, {
+          onClick={e => this.submitForm(e, {
             name: this.name.value,
             lat: this.lat.value,
-            lng: this.lng.value
+            lng: this.lng.value,
           })}
         >
-            Save
+          Save
         </button>
         { error && <p>{ error }</p>}
       </form>
@@ -84,5 +84,9 @@ class Form extends Component {
   }
 }
 
+Form.propTypes = {
+  saveNewLocation: PropTypes.func.isRequired,
+  currentCoordinates: PropTypes.func.isRequired,
+};
 
 export default Form;

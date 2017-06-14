@@ -1,3 +1,5 @@
+/* eslint-disable no-case-declarations */
+
 const initialState = {
   data: [],
 };
