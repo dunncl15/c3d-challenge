@@ -1,7 +1,7 @@
 import { connect } from 'react-redux';
 import { bindActionCreators } from 'redux';
 import Form from '../components/Form';
-import { saveNewLocation } from '../actions/locationActions';
+import { saveNewLocation, currentCoordinates } from '../actions/locationActions';
 
 
 const mapStateToProps = (state) => {
@@ -9,7 +9,7 @@ const mapStateToProps = (state) => {
 };
 
 const mapDispatchToProps = (dispatch) => {
-  return bindActionCreators({ saveNewLocation }, dispatch);
+  return bindActionCreators({ saveNewLocation, currentCoordinates }, dispatch);
 };
 
 export default connect(mapStateToProps, mapDispatchToProps)(Form);
