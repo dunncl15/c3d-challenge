@@ -1,5 +1,5 @@
 import React, { Component } from 'react';
-import LeafletMap from '../containers/LeafletMap';
+import LeafletMap from '../components/LeafletMap';
 import FormContainer from '../containers/FormContainer';
 
 class App extends Component {
@@ -13,13 +13,14 @@ class App extends Component {
   }
 
   render() {
-    const { locations, coordinates } = this.props;
+    const { locations, coordinates, currentCoords } = this.props;
     return (
       <div className="App">
         <FormContainer />
         <LeafletMap
           locations={locations}
           coordinates={coordinates}
+          currentCoords={currentCoords}
         />
       </div>
     );

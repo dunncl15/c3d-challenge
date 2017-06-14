@@ -7,7 +7,8 @@ import App from '../components/App';
 const mapStateToProps = (state) => {
   return {
     locations: state.Locations.data,
-    coordinates: state.selectedCoordinates
+    coordinates: state.Coordinates,
+    currentCoords: state.CurrentCoordinates
   };
 };
 
