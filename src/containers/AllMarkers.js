@@ -1,14 +1,17 @@
 /*eslint-disable no-unused-vars*/
 import React, { Component } from 'react';
 import { connect } from 'react-redux';
-import AllMarkers from '../components/AllMarkers'
+import { bindActionCreators } from 'redux';
+import AllMarkers from '../components/AllMarkers';
+import { storeCoordinates } from '../actions/locationActions';
+
 
 const mapStateToProps = (state) => {
   return { locations: state.Locations.data }
 }
 
 const mapDispatchToProps = (dispatch) => {
-  return {}
+  return bindActionCreators({ storeCoordinates }, dispatch);
 }
 
 export default connect(mapStateToProps, mapDispatchToProps)(AllMarkers);
