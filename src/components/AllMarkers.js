@@ -6,12 +6,14 @@ import MapMarker from './Marker'
 class AllMarkers extends Component {
 
   render() {
-    const markerArray = this.props.locations.map((marker, i) => {
+    const { locations, storeCoordinates } = this.props;
+    const markerArray = locations.map((marker, i) => {
       return (
         <MapMarker
           key={i}
           location={[+marker.lat, +marker.lng]}
           name={marker.name}
+          storeCoordinates={ storeCoordinates }
         />
       )
     })
