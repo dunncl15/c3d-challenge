@@ -6,6 +6,8 @@ import tealdot from '../imgs/tealdot.svg'
 class MapMarker extends Component {
 
   render() {
+    const { location, name, storeCoordinates } = this.props;
+
     let icon = L.icon({
       iconUrl: tealdot,
       iconSize: [15, 15]
@@ -14,7 +16,8 @@ class MapMarker extends Component {
     return (
       <div className="marker-container">
           <Marker
-            position={this.props.location}
+            onClick={ ()=> storeCoordinates(location) }
+            position={location}
             icon={icon}
           >
             <Tooltip
@@ -22,7 +25,7 @@ class MapMarker extends Component {
               interactive
             >
               <div>
-                <h4>{this.props.name}</h4>
+                <h4>{name}</h4>
               </div>
             </Tooltip>
           </Marker>
