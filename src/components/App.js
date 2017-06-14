@@ -13,10 +13,14 @@ class App extends Component {
   }
 
   render() {
+    const { locations, coordinates } = this.props;
     return (
       <div className="App">
         <FormContainer />
-        <LeafletMap locations={this.props.locations} />
+        <LeafletMap
+          locations={locations}
+          coordinates={coordinates}
+        />
       </div>
     );
   }
