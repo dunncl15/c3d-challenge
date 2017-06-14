@@ -2,7 +2,7 @@ const initialState = {
   data: [],
 };
 
-const Locations = (state = initialState, action) => {
+export const Locations = (state = initialState, action) => {
   switch (action.type) {
     case 'STORE_LOCATIONS':
       state = initialState;
@@ -11,5 +11,3 @@ const Locations = (state = initialState, action) => {
       return state;
   }
 };
-
-export default Locations;

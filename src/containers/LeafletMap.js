@@ -12,6 +12,7 @@ class LeafletMap extends Component {
 
   render() {
     const { center } = this.state;
+    const { coordinates } = this.props;
     return (
       <div className="map-container">
         <Map
@@ -32,7 +33,7 @@ class LeafletMap extends Component {
           />
           <AllMarkers />
           <Polygon
-            positions={this.props.coordinates}
+            positions={coordinates}
           />
         </Map>
       </div>
