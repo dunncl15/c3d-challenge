@@ -1,12 +1,18 @@
 require('isomorphic-fetch');
 
-
 const storeAllLocations = (locations) => {
   return {
     type: 'STORE_LOCATIONS',
     data: locations,
   };
 };
+
+const storeCoordinates = (coordinates) => {
+  return {
+    type: 'STORE_COORDINATES',
+    data: coordinates
+  }
+}
 
 const saveNewLocation = (location) => {
   return (dispatch) => {
@@ -37,4 +43,4 @@ const fetchAllLocations = () => {
 };
 
 
-export { fetchAllLocations, saveNewLocation }
+export { fetchAllLocations, saveNewLocation, storeCoordinates }
