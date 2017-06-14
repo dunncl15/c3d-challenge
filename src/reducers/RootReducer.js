@@ -1,10 +1,12 @@
 import { combineReducers } from 'redux';
 import { Locations } from './LocationsReducer';
-import { selectedCoordinates } from './coordinatesReducer';
+import { Coordinates } from './CoordinatesReducer';
+import { CurrentCoordinates } from './CurrentCoordsReducer';
 
 const RootReducer = combineReducers({
   Locations,
-  selectedCoordinates,
+  Coordinates,
+  CurrentCoordinates,
 });
 
 export default RootReducer;

@@ -1,4 +1,4 @@
-export const selectedCoordinates = (state = [], action) => {
+export const Coordinates = (state = [], action) => {
   switch (action.type) {
     case 'STORE_COORDINATES':
       const index = state.indexOf(action.data);
